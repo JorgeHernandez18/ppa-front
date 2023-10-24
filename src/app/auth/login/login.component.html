@@ -1,0 +1,51 @@
+<div class="px-3 py-7 border-round lg:max-w-30rem w-full sm:px-6 bg-white opacity-80">
+  <div class="text-center mb-6">
+    <h1 class="text-gray-900">¡Bienvenido otra vez!</h1>
+  </div>
+  <form [formGroup]="form" class="user" (ngSubmit)="login()">
+    <input type="email" pInputText class="w-full p-inputtext-sm mb-4" formControlName="email" placeholder="Ingrese email:"/>
+    <p-password forname="password" formControlName="password" inputStyleClass="w-full p-inputtext-sm" styleClass="w-full mb-6" placeholder="Contraseña:" [feedback]="false" [toggleMask]="true"></p-password>
+
+    <p-button type="submit" label="Ingresar" styleClass="w-full p-button-raised py-2 mb-4"></p-button>
+  
+    <div class="text-center">
+      <a class="small no-underline" [routerLink]="['..', 'register']">Crea tu Cuenta</a>
+    </div>
+  </form>
+</div>
+
+
+
+<!-- div>
+  <div class="p-5">
+    <div class="text-center">
+      <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+    </div>
+    <form [formGroup]="form" class="user" (ngSubmit)="login()">
+      <div class="form-group">
+        <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+          placeholder="Enter Email Address..." formControlName="email" />
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control form-control-user" id="exampleInputPassword"
+          placeholder="Password" formControlName="password" />
+      </div>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox small">
+          <input type="checkbox" class="custom-control-input" id="customCheck"/>
+          <label class="custom-control-label" for="customCheck">Remember Me</label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-user btn-block">
+        Login
+      </button>
+    </form>
+    <hr />
+    <div class="text-center">
+      <a class="small" href="forgot-password.html">Forgot Password?</a>
+    </div>
+    <div class="text-center">
+      <a class="small" [routerLink]="['..', 'register']">Create an Account!</a>
+    </div>
+  </div>
+</div -->

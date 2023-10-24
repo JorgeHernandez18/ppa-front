@@ -1,0 +1,16 @@
+  <h2>Proyectos de Aula</h2>
+  
+  <div class="flex flex-row flex-wrap card-container blue-container">
+    <p-card *ngFor="let aulaProject of aulaProjects" class=" flex m-auto mb-3" [style]="{ width: '100%' }">
+         
+            
+                <h3>{{ aulaProject.nombre }}</h3>
+                <p> <strong>Inicio: </strong> {{ aulaProject.fecha_inicio | date }}</p>
+                <p> <strong>Fin: </strong> {{ aulaProject.fecha_fin | date }} </p>
+
+    </p-card>
+  </div>
+
+  <div class="d-flex justify-content-end p-3">
+    <p-button [routerLink]="['..', 'projects', 'view']" >  Mostrar proyectos de aula </p-button>
+  </div>

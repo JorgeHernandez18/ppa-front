@@ -1,0 +1,118 @@
+
+<div class="px-6 py-6 border-round w-full sm:px-6 bg-white opacity-80">
+  <div class="text-center mb-6">
+    <h1 class="text-gray-900">¡Crea tu Cuenta!</h1>
+  </div>
+  <form [formGroup]="form" class="user" (ngSubmit)="register()" >
+
+    <div class="formgrid grid">
+      <div class="field col-12 md:col">
+        <input type="text" pInputText class="p-inputtext-sm w-full" placeholder="Nombres" formControlName="nombre"/>
+      </div>
+      <div class="field col-12 md:col">
+        <input type="text" pInputText class="p-inputtext-sm w-full" placeholder="Apellidos" formControlName="apellido"/>    
+      </div>
+    </div>
+    
+    <input type="email" pInputText class="p-inputtext-sm w-full mb-3" placeholder="Correo Electronico" formControlName="correo_electronico"/>
+    
+    <div class="formgrid grid">
+      <div class="field col-12 md:col">
+        <input type="text" pInputText class="p-inputtext-sm w-full" placeholder="Telefono" formControlName="numero_telefono"/>
+      </div>
+      <div class="field col-12 md:col">
+        <input type="text" pInputText class="p-inputtext-sm w-full" placeholder="Cedula" formControlName="cedula"/>    
+      </div>
+    </div>
+
+    <div>
+      <span>Tipo:</span>
+      <div class="flex flex-wrap justify-content-evenly gap-3 mt-2">
+        <div class="flex align-items-center">
+            <p-radioButton value="true" name="type" inputId="docente" formControlName="type"></p-radioButton>
+            <label for="docente" class="ml-2">Docente</label>
+        </div>
+        
+        <div class="flex align-items-center">
+            <p-radioButton value="false" name="type" inputId="docente-lider" formControlName="type"></p-radioButton>
+            <label for="docente-lider" class="ml-2">Docente lider</label>
+        </div>
+    </div>
+    </div>
+
+    <div class="formgrid grid mt-3 mb-4">
+      <div class="field col-12 md:col">
+        <p-password inputStyleClass="w-full p-inputtext-sm" styleClass="w-full" placeholder="Password" formControlName="password" [feedback]="false" [toggleMask]="true"></p-password>
+      </div>
+      <div class="field col-12 md:col">
+        <p-password inputStyleClass="w-full p-inputtext-sm" styleClass="w-full" placeholder="Repeat Password" formControlName="repeat_password" [feedback]="false" [toggleMask]="true"></p-password>
+      </div>
+    </div>
+
+    <p-button type="submit" label="Registrar Cuenta" styleClass="w-full p-button-raised py-2 mb-4"></p-button>
+  
+    <div class="text-center">
+      <a class="small no-underline" [routerLink]="['..', 'login']">Inicie sesion aqui!</a>
+    </div>
+    
+  </form>
+</div>
+
+<!-- div>
+  <div class="p-5">
+    <div class="text-center">
+      <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+    </div>
+    <form class="user" (ngSubmit)="register()" [formGroup]="form">
+      <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Nombres" formControlName="nombre">
+        </div>
+        <div class="col-sm-6">
+          <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Apellidos" formControlName="apellido">
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Correo Electronico" formControlName="correo_electronico">
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <input type="text" class="form-control form-control-user" id="telefono" placeholder="Telefono" formControlName="numero_telefono">
+        </div>
+        <div class="col-sm-6">
+          <input type="text" class="form-control form-control-user" id="cedula" placeholder="Cedula" formControlName="cedula">
+        </div>
+      </div>
+      <div class="my-3">
+        Tipo:
+          <div class="d-flex justify-content-around">
+						<div class="custom-control custom-radio">
+							<input id="docente" type="radio" class="custom-control-input" value="true" name="gender" required>
+              <label class="custom-control-label" for="docente">Docente</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="docente-lider" type="radio" class="custom-control-input" value="false" name="gender" required>
+              <label class="custom-control-label" for="docente-lider">Docente lider</label>
+            </div>
+          </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <input type="password" class="form-control form-control-user" id="exampleInputPassword"
+            placeholder="Password" formControlName="password">
+        </div>
+        <div class="col-sm-6">
+          <input type="password" class="form-control form-control-user" id="exampleRepeatPassword"
+            placeholder="Repeat Password" formControlName="repeat_password">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-user btn-block">
+        Register Account
+      </button>
+    </form>
+    <hr>
+    <div class="text-center">
+      <a class="small" [routerLink]="['..', 'login']">Already have an account? Login!</a>
+    </div>
+  </div>
+</div -->

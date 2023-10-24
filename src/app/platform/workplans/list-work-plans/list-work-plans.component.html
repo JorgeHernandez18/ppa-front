@@ -1,0 +1,150 @@
+<h2 class="m-5">Planes de trabajo</h2>
+
+<p-card styleClass="m-4">
+
+  <div class="flex justify-content-between mb-3">
+    <p-button (click)="showDialog = true" styleClass="py-2" icon="pi pi-plus" label="Agregar"></p-button>
+
+    <p-dialog header="Agregar Plan de trabajo" styleClass="w-6" [(visible)]="showDialog" [modal]="true" [draggable]="false" [resizable]="false">
+      <form class="p-5" (ngSubmit)="createWorkPlan()" [formGroup]="form">
+        <p-calendar styleClass="w-full mb-4" formControlName="anio" view="year" dateFormat="yy" inputId="yearpicker"></p-calendar>
+        <textarea rows="5" pInputTextarea  class="w-full mb-4" placeholder="cierre" formControlName="cierre"></textarea>
+
+        <p-dropdown placeholder="Eje transversal" styleClass="w-full mb-4" appendTo="body" formControlName="id_eje_transversal" [options]="transversalAxis" optionValue="id" optionLabel="nombre"></p-dropdown>
+
+        <p-button styleClass="w-full mt-4" type="submit" label="Agregar"></p-button>
+      </form>
+    </p-dialog>
+
+    <span class="p-input-icon-left ml-auto">
+      <i class="pi pi-search"></i>
+      <input #inputSearch pInputText type="text" class="" (input)="dt.filterGlobal(inputSearch.value, 'contains')" placeholder="Search keyword" />
+    </span>
+  </div>
+
+  <p-table #dt
+           [value]="workplans" 
+           [paginator]="true"
+           [rows]="10"
+           styleClass="p-datatable-sm"
+           [showCurrentPageReport]="true"
+           [rowsPerPageOptions]="[10, 25, 50]"
+           [tableStyle]="{ 'min-width': '50rem' }"
+           [globalFilterFields]="['id', 'nombre']">
+    <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id">
+            Id <p-sortIcon field="id"></p-sortIcon>
+          </th>
+          <th pSortableColumn="anio">
+            Año <p-sortIcon field="anio"></p-sortIcon>
+          </th>
+          <th pSortableColumn="id_eje_transversal">
+            Eje Transversal <p-sortIcon field="id_eje_transversal"></p-sortIcon>
+          </th>
+          <th pSortableColumn="cierre">
+            Cierre <p-sortIcon field="cierre"></p-sortIcon>
+          </th>
+          <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-workplan>
+        <tr>
+          <td>{{ workplan.id }}</td>
+          <td>{{ workplan.anio | date:"yyyy" }}</td>
+          <td>{{ getTransversalAxi(workplan.id_eje_transversal)?.nombre }}</td>
+          <td>{{ workplan.cierre }}</td>
+          <td>
+            <a [routerLink]="['../activity', workplan.id ]">Agregar actividades</a>
+          </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+          <td class="text-center p-4" colspan="4">No activities projects found.</td>
+      </tr>
+  </ng-template>
+  </p-table>
+</p-card>
+<!-- div class="container-fluid">
+  <h1 class="h3 mb-2 text-gray-800">Planes de Trabajo</h1>
+  <hr />
+  <div class="row">
+    <div class="col-12 col-lg-5 mr-auto">
+      <div class="card border-left-primary shadow p-4">
+        <form class="user" (ngSubmit)="createWorkPlan()" [formGroup]="form">
+          <div class="form-group">
+            <input
+              type="number"
+              class="form-control form-control-user"
+              id="anio"
+              placeholder="Año"
+              formControlName="anio"
+            />
+          </div>
+          <hr />
+          <div>
+            <textarea
+              type="text"
+              class="form-control"
+              id="cierre"
+              placeholder="Cierre..."
+              formControlName="cierre"
+            >
+            </textarea>
+          </div>
+          <hr />
+          <div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Eje Transversal</label>
+              <select
+                class="form-control"
+                id="exampleFormControlSelect1"
+                formControlName="id_eje_transversal"
+              >
+                <option
+                  *ngFor="let axis of transversalAxis"
+                  value="{{ axis.id }}"
+                >
+                  <strong>{{ axis.nombre }}</strong>
+                </option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-user btn-block">
+            Crear Plan de Trabajo
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="card shadow col-12 col-lg-7">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered"
+            id="dataTable"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Año</th>
+                <th>Eje Transversal</th>
+                <th>Cierre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let workplan of workplans">
+                <td>{{ workplan.id }}</td>
+                <td>{{ workplan.anio }}</td>
+                <td>{{ transversalAxis[workplan.id_eje_transversal].nombre }}</td>
+                <td>{{ workplan.cierre }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div -->

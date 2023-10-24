@@ -1,0 +1,224 @@
+<h2 class="m-5">Crear actividades para el plan del trabajo</h2>
+
+<p-card styleClass="m-4">
+
+  <div class="flex justify-content-between mb-3">
+    <p-button (click)="showDialog = true" styleClass="py-2" icon="pi pi-plus" label="Agregar"></p-button>
+
+    <p-dialog header="Agregar Actividad" styleClass="w-6" [(visible)]="showDialog" [modal]="true" [draggable]="false" [resizable]="false">
+      <form class="p-5" (ngSubmit)="createActivity()" [formGroup]="form">
+        <input type="text" pInputText class="w-full mb-4" formControlName="nombre" placeholder="Nombre"/>
+       
+        <div class="flex justify-content-between mb-4 flex-column lg:flex-row">
+          <p-calendar styleClass="w-full" placeholder="fecha de Inicio" appendTo="body" formControlName="fecha_inicio"></p-calendar>
+          <p-calendar styleClass="w-full" placeholder="fecha de Fin" appendTo="body" formControlName="fecha_fin"></p-calendar>
+        </div>
+
+        <input type="text" pInputText class="w-full  mb-4" formControlName="cumplimiento" placeholder="Cumplimiento"/>
+        <textarea rows="5" pInputTextarea  class="w-full mb-4" placeholder="observacion" formControlName="observacion"></textarea>
+
+        <p-button styleClass="w-full mt-4" type="submit" label="Agregar"></p-button>
+      </form>
+    </p-dialog>
+
+    <span class="p-input-icon-left ml-auto">
+      <i class="pi pi-search"></i>
+      <input #inputSearch pInputText type="text" class="" (input)="dt.filterGlobal(inputSearch.value, 'contains')" placeholder="Search keyword" />
+    </span>
+  </div>
+
+  <p-table #dt
+           [value]="activities" 
+           [paginator]="true"
+           [rows]="10"
+           styleClass="p-datatable-sm"
+           [showCurrentPageReport]="true"
+           [rowsPerPageOptions]="[10, 25, 50]"
+           [tableStyle]="{ 'min-width': '50rem' }"
+           [globalFilterFields]="['id', 'nombre']">
+    <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="nombre">
+            Nombre <p-sortIcon field="nombre"></p-sortIcon>
+          </th>
+          <th pSortableColumn="fecha_inicio">
+            Fecha de Inicio <p-sortIcon field="fecha_inicio"></p-sortIcon>
+            </th>
+          <th pSortableColumn="fecha_fin">
+            Fecha Fin <p-sortIcon field="fecha_fin"></p-sortIcon>
+          </th>
+          <th pSortableColumn="cumplimiento">
+            Cumplimiento <p-sortIcon field="cumplimiento"></p-sortIcon>
+          </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-activity>
+        <tr>
+          <td>{{ activity.nombre }}</td>
+          <td>{{ activity.fecha_inicio | date:'dd/MM/yyyy' }}</td>
+          <td>{{ activity.fecha_fin | date:'dd/MM/yyyy' }}</td>
+          <td>{{ activity.cumplimiento }}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+          <td class="text-center p-4" colspan="4">No activities projects found.</td>
+      </tr>
+  </ng-template>
+  </p-table>
+</p-card>
+<!-- div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-lg-5">
+      <div class="card border-left-primary shadow p-4 mr-auto">
+        <div>
+          <h2>Crear Actividad de plan de trabajo</h2>
+        </div>
+        <hr />
+        <form class="user" (ngSubmit)="createActivity()" [formGroup]="form">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-user"
+              id="nombre"
+              placeholder="Nombre"
+              formControlName="nombre"
+            />
+          </div>
+          <hr />
+          <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label for="fecha_inicio">Fecha Inicio</label>
+              <input
+                type="date"
+                class="form-control form-control-user"
+                id="fecha_inicio"
+                placeholder="Nombres"
+                formControlName="fecha_inicio"
+              />
+            </div>
+            <div class="col-sm-6">
+              <label for="fecha_fin">Fecha Fin</label>
+              <input
+                type="date"
+                class="form-control form-control-user"
+                id="fecha_fin"
+                placeholder="Apellidos"
+                formControlName="fecha_fin"
+              />
+            </div>
+          </div>
+          <hr />
+          <div>
+            <label for="cumplimiento">Cumplimiento</label>
+            <input
+              type="number"
+              class="form-control form-control-user"
+              id="cumplimiento"
+              placeholder="Cumplimiento"
+              formControlName="cumplimiento"
+            />
+          </div>
+          <br />
+          <div>
+            <label for="observacion">Observacion</label>
+            <textarea
+              type="text"
+              class="form-control"
+              id="observacion"
+              placeholder="Observacion..."
+              formControlName="observacion"
+            >
+            </textarea>
+          </div>
+          <hr />
+          <div>
+            <div class="form-group">
+              <label for="workplan_c">Plan de Trabajo</label>
+              <select
+                class="form-control"
+                id="workplan_c"
+                formControlName="plan_trabajo"
+              >
+                <option
+                  *ngFor="let workplan of workplans; let i = index"
+                  value="{{ i }}"
+                >
+                  <p>
+                    Año:
+                    <strong
+                      >{{ workplan.anio }}:
+                      {{
+                        transversalAxis[workplan.id_eje_transversal].nombre
+                      }}</strong
+                    >
+                  </p>
+                </option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-user btn-block">
+            Crear Actividad
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <div class="card shadow p-4">
+        <h2>Actividades:</h2>
+        <div>
+          <form [formGroup]="acForm">
+            <label for="list">Plan de Trabajo</label>
+            <select
+              class="form-control"
+              name="list-workplans"
+              id="list"
+              formControlName="activity"
+            >
+              <option
+                value="{{ i }}"
+                *ngFor="let workplan of workplans; let i = index"
+              >
+                <p>
+                  Año:
+                  <strong
+                    >{{ workplan.anio }}:
+                    {{
+                      transversalAxis[workplan.id_eje_transversal].nombre
+                    }}</strong
+                  >
+                </p>
+              </option>
+            </select>
+          </form>
+          <hr />
+        </div>
+        <div *ngIf="activities.length != 0; else notFound">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Inicio</th>
+                <th scope="col">Fin</th>
+                <th scope="col">Cumplimiento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let activity of activities">
+                <th>{{activity.nombre}}</th>
+                <td>{{activity.fecha_inicio}}</td>
+                <td>{{activity.fecha_fin}}</td>
+                <td>{{activity.cumplimiento}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ng-template #notFound>
+          <h3 class="">
+            No hay actividades creadas para este plan de trabajo
+          </h3>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div -->

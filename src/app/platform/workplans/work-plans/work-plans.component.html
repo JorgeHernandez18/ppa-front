@@ -1,0 +1,20 @@
+
+  <h2>Planes de Trabajo</h2>
+  
+  <div class="flex flex-row flex-wrap card-container blue-container">
+
+      <p-card *ngFor="let workplan of workPlans" class=" flex m-auto  mb-3" [style]="{ width: '100%' }">
+
+          <h3>Plan de Trabajo #{{ workplan.id}}</h3>
+          <p> Año: <strong>{{ workplan.anio }}</strong> </p>
+          <p> Cierre: <span class="text-danger">{{ workplan.cierre }}</span> </p>
+
+      </p-card>
+
+  </div>
+ <br>
+  <div class="d-flex justify-content-end p-3" >
+    <p-button  [routerLink]="['..', 'workplans', 'view']"> Mostrar planes de trabajo </p-button>
+  </div>
+
+  
