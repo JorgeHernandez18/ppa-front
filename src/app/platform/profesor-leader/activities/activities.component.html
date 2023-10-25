@@ -17,11 +17,6 @@
         <input type="text" pInputText class="w-full  mb-4" formControlName="cumplimiento" placeholder="Cumplimiento"/>
         <textarea rows="5" pInputTextarea  class="w-full mb-4" placeholder="observacion" formControlName="observacion"></textarea>
               
-        <span class="p-fluid">
-          <p-autoComplete inputStyleClass="px-2 py-1" [(ngModel)]="selectedStudents" [suggestions]="students" [forceSelection]="true" 
-              (completeMethod)="filterStudents($event)" field="name" [multiple]="true"></p-autoComplete>
-        </span>
-
         <p-button styleClass="w-full mt-4" type="submit" label="Agregar"></p-button>
       </form>
     </p-dialog>
@@ -60,8 +55,8 @@
     <ng-template pTemplate="body" let-activity>
         <tr>
           <td>{{ activity.nombre }}</td>
-          <td>{{ activity.fecha_inicio }}</td>
-          <td>{{ activity.fecha_fin }}</td>
+          <td>{{ activity.fecha_inicio | date }}</td>
+          <td>{{ activity.fecha_fin  | date}}</td>
           <td>{{ activity.cumplimiento }}</td>
         </tr>
     </ng-template>
@@ -71,6 +66,9 @@
       </tr>
   </ng-template>
   </p-table>
+
+  <p-button label="Volver a proyectos de aula" [routerLink]="['/pl/projects/view'] ">
+  </p-button>
 </p-card>
 <!--div class="container-fluid">
   <div class="row">

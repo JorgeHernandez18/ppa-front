@@ -3,10 +3,15 @@
     <h1 class="text-gray-900">¡Bienvenido otra vez!</h1>
   </div>
   <form [formGroup]="form" class="user" (ngSubmit)="login()">
-    <input type="email" pInputText class="w-full p-inputtext-sm mb-4" formControlName="email" placeholder="Ingrese email:"/>
-    <p-password forname="password" formControlName="password" inputStyleClass="w-full p-inputtext-sm" styleClass="w-full mb-6" placeholder="Contraseña:" [feedback]="false" [toggleMask]="true"></p-password>
 
-    <p-button type="submit" label="Ingresar" styleClass="w-full p-button-raised py-2 mb-4"></p-button>
+    <input type="email" pInputText class="w-full p-inputtext-sm" formControlName="email" placeholder="Ingrese email:"/>
+   
+    <small  class="text-red-400 pl-2" *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched"> campo requerido </small>
+
+    <p-password forname="password" formControlName="password" inputStyleClass="w-full p-inputtext-sm mt-4" styleClass="w-full" placeholder="Contraseña:" [feedback]="false" [toggleMask]="true"></p-password>
+    <small  class="text-red-400 pl-2" *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched"> campo requerido </small>
+
+    <p-button type="submit" label="Ingresar" styleClass="w-full p-button-raised py-2 mb-4  mt-4"></p-button>
   
     <div class="text-center">
       <a class="small no-underline" [routerLink]="['..', 'register']">Crea tu Cuenta</a>

@@ -1,9 +1,9 @@
 
   <h2>Planes de Trabajo</h2>
   
-  <div class="flex flex-row flex-wrap card-container blue-container">
+  <div class="flex  flex-wrap card-container blue-container">
 
-      <p-card *ngFor="let workplan of workPlans" class=" flex m-auto  mb-3" [style]="{ width: '100%' }">
+      <p-card *ngFor="let workplan of workPlans" class=" flex ml-5 mb-3" [style]="{ width: '300px' }">
 
           <h3>Plan de Trabajo #{{ workplan.id}}</h3>
           <p> Año: <strong>{{ workplan.anio }}</strong> </p>

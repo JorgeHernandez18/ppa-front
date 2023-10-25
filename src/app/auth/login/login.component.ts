@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Login } from 'src/app/interfaces/user.interface';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -10,8 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
   private _form: FormGroup = this.fb.group({
-    'email': [''],
-    'password': ['']
+    'email': ['',[Validators.required]],
+    'password': ['',[Validators.required]],
   });
 
   constructor(private fb: FormBuilder, private authService: AuthService){}
@@ -21,6 +21,10 @@ export class LoginComponent {
   }
 
   login(){
+
+    if(!this._form.valid) {
+      return this._form.markAllAsTouched();
+    }
     const loginData: Login = {
       correo_electronico: this._form.controls['email'].value,
       password: this._form.controls['password'].value,

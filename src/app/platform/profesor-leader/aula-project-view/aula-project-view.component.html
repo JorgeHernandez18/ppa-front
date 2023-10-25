@@ -67,8 +67,8 @@
           <td>{{ aulaProject.id }}</td>
           <td>{{ aulaProject.nombre }}</td>
           <td>{{ getAxis(aulaProject.id_eje_transversal)?.nombre }}</td>
-          <td>{{ aulaProject.fecha_inicio }}</td>
-          <td>{{ aulaProject.fecha_fin }}</td>
+          <td>{{ aulaProject.fecha_inicio| date }}</td>
+          <td>{{ aulaProject.fecha_fin | date }}</td>
           <td>{{ getGrade(aulaProject.grado)?.descripcion }}</td>
           <td>
             <a [routerLink]="['../activity', aulaProject.id]">Agregar actividades</a>

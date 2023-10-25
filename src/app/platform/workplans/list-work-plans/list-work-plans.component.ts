@@ -45,6 +45,7 @@ export class ViewWorkPlansComponent {
     this.axixService.listTransversalAxis().subscribe({
       next: (transversalAxisList) =>
         (this._transversalAxis = transversalAxisList),
+      error: (error) => console.log(error)
     });
   }
 
