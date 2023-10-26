@@ -13,7 +13,6 @@ import { WorkplanService } from 'src/app/services/workplan.service';
 })
 export class ActivitiesComponent {
   private _form: FormGroup;
-  
   private _activities: ActivityPT[];
   private _transversalAxis: TransversalAxis[];
 

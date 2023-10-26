@@ -13,6 +13,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AnimateModule } from 'primeng/animate';
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 
 
 
@@ -32,7 +33,8 @@ import { AnimateModule } from 'primeng/animate';
     PasswordModule,
     RadioButtonModule,
     TableModule,
-    AnimateModule
+    AnimateModule,
+    TriStateCheckboxModule
   ]
 })
 export class PrimeNgModule { }
